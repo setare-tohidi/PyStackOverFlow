@@ -6,6 +6,8 @@ from src.bot import bot
 from src.constants import keyboards, keys, states
 from src.filters import IsAdmin
 from src.db import db
+from src.utils.io import read_file
+from src.data import DATA_DIR
 
 
 
@@ -29,8 +31,23 @@ class Bot:
         logger.info('Bot is running...')
         self.bot.infinity_polling()
 
+
+
+
     def handlers(self):
-        @self.bot.message_handler(text=[keys.exit])
+        
+        
+        @self.mesagge_handler(test=keys.ask_question)
+        def ask_questions(message):
+            self.update_state(message.chat.id, states.ask_question)
+            self.bot.send_message(
+                message.chat.id, 
+                read_file(DATA_DIR / 'guide.html')
+                reply_markup=keyboards.main
+            )
+        
+        
+        @self.bot.message_handler(text=[keys.cancel])
         def exit(message):
             pass
 

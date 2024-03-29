@@ -2,7 +2,7 @@
 
 
 ## How to Run
-1. Set your telegram bot token as environment variable `TELEGRAM_BOT_TOKEN`:
+1. Set your telegram bot token as environment variable `TELEGRAMBOT_TOKEN`:
 ```
 export TELEGRAM_BOT_TOKEN=<your_telegram_bot_token>
 ```
